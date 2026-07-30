@@ -29,8 +29,9 @@ export const login = async (email: string, password: string, role: UserRole) => 
   } catch (error) {
     console.warn('Backend unreachable, using mock data for login');
     return { 
+      success: true,
       token: 'mock-jwt-token', 
-      user: { id: 'u1', email, full_name: 'Mock User', role, preferred_language: 'en' } 
+      user: { id: 'u1', email, full_name: email.split('@')[0].replace('.', ' '), role, preferred_language: 'en' } 
     };
   }
 };
