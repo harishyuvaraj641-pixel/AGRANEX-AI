@@ -1618,6 +1618,12 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`[AGRANEX SERVER] Running on port ${PORT}`);
-});
+// Only start listening when not running in Vercel's serverless environment
+if (!process.env.VERCEL) {
+  server.listen(PORT, () => {
+    console.log(`[AGRANEX SERVER] Running on port ${PORT}`);
+  });
+}
+
+// Export app for Vercel serverless functions
+export default app;

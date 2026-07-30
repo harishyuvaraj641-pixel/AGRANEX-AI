@@ -1,26 +1,20 @@
 {
-  "services": {
-    "frontend": {
-      "root": "frontend",
-      "framework": "vite"
-    },
-    "backend": {
-      "root": "backend",
-      "entrypoint": "src/server.ts"
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/dist",
+  "builds": [
+    {
+      "src": "backend/api/index.ts",
+      "use": "@vercel/node"
     }
-  },
+  ],
   "rewrites": [
     {
-      "source": "/api(/.*)?",
-      "destination": {
-        "service": "backend"
-      }
+      "source": "/api/(.*)",
+      "destination": "/backend/api/index.ts"
     },
     {
       "source": "/(.*)",
-      "destination": {
-        "service": "frontend"
-      }
+      "destination": "/index.html"
     }
   ]
 }
