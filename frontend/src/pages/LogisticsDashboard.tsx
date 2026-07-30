@@ -65,7 +65,7 @@ export const LogisticsDashboard: React.FC = () => {
   const fetchActiveTracking = async () => {
     if (!activeTracking) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/marketplace/logistics/tracking/booking/${activeTracking.id}`);
+      const res = await fetch(`/api/v1/marketplace/logistics/tracking/booking/${activeTracking.id}`);
       if (res.ok) {
         const data = await res.json();
         if (data.tracking) {
@@ -86,7 +86,7 @@ export const LogisticsDashboard: React.FC = () => {
   // Load bookings and active tracking states
   const loadLogisticsData = async () => {
     try {
-      const bookRes = await fetch('http://localhost:5000/api/v1/marketplace/logistics/bookings');
+      const bookRes = await fetch('/api/v1/marketplace/logistics/bookings');
       if (bookRes.ok) {
         const data = await bookRes.json();
         setBookings(data);
@@ -97,7 +97,7 @@ export const LogisticsDashboard: React.FC = () => {
         }
       }
 
-      const orderRes = await fetch('http://localhost:5000/api/v1/marketplace/orders');
+      const orderRes = await fetch('/api/v1/marketplace/orders');
       if (orderRes.ok) {
         setAllOrders(await orderRes.json());
       }
@@ -187,7 +187,7 @@ export const LogisticsDashboard: React.FC = () => {
   // Accept a booking
   const handleAcceptTrip = async (bookingId: string) => {
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/logistics/bookings/accept', {
+      const res = await fetch('/api/v1/marketplace/logistics/bookings/accept', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ bookingId, driverName: 'Saravanan Chinnasamy' })
@@ -223,7 +223,7 @@ export const LogisticsDashboard: React.FC = () => {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/logistics/bookings/update-gps', {
+      const res = await fetch('/api/v1/marketplace/logistics/bookings/update-gps', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ bookingId: activeTracking.id, lat, lng, speed, eta, status })
@@ -242,7 +242,7 @@ export const LogisticsDashboard: React.FC = () => {
     setErrorMessage('');
     setSuccessMessage('');
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/orders/confirm-handover', {
+      const res = await fetch('/api/v1/marketplace/orders/confirm-handover', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ orderId, otp })
@@ -265,7 +265,7 @@ export const LogisticsDashboard: React.FC = () => {
     setErrorMessage('');
     setSuccessMessage('');
     try {
-      const confirmRes = await fetch('http://localhost:5000/api/v1/marketplace/orders/confirm-delivery', {
+      const confirmRes = await fetch('/api/v1/marketplace/orders/confirm-delivery', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ orderId })
@@ -292,7 +292,7 @@ export const LogisticsDashboard: React.FC = () => {
     setSuccessMessage('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/logistics/bookings/deliver', {
+      const res = await fetch('/api/v1/marketplace/logistics/bookings/deliver', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

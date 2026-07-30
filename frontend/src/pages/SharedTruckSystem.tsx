@@ -24,7 +24,7 @@ export const SharedTruckSystem: React.FC = () => {
 
   const loadHubs = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/hubs');
+      const res = await fetch('/api/v1/marketplace/hubs');
       if (res.ok) setHubs(await res.json());
     } catch (err) {
       console.warn('Backend unavailable, using fallback hubs');
@@ -98,7 +98,7 @@ export const SharedTruckSystem: React.FC = () => {
     };
 
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/logistics/bookings/create', {
+      const res = await fetch('/api/v1/marketplace/logistics/bookings/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bookingPayload)

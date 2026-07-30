@@ -178,7 +178,7 @@ const GovernmentSchemes = () => {
                         rel="noopener noreferrer"
                         onClick={async () => {
                           try {
-                            await fetch('http://localhost:5000/api/v1/schemes/apply', {
+                            await fetch('/api/v1/schemes/apply', {
                               method: 'POST',
                               headers: { 'Content-Type': 'application/json' },
                               body: JSON.stringify({ schemeId: scheme.id, farmerName: 'Farmer Rajesh' })
@@ -358,7 +358,7 @@ const GovernmentSchemes = () => {
                   e.preventDefault();
                   setIsSubmitting(true);
                   try {
-                    const res = await fetch('http://localhost:5000/api/v1/schemes/apply', {
+                    const res = await fetch('/api/v1/schemes/apply', {
                       method: 'POST',
                       headers: { 'Content-Type': 'application/json' },
                       body: JSON.stringify({

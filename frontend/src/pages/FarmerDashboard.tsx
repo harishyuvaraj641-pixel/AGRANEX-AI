@@ -82,7 +82,7 @@ const LiveGPSTrackingPanel: React.FC<{ orderId: string }> = ({ orderId }) => {
 
   const fetchTracking = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/marketplace/logistics/tracking/order/${orderId}`);
+      const res = await fetch(`/api/v1/marketplace/logistics/tracking/order/${orderId}`);
       if (res.ok) {
         setTrackingData(await res.json());
       }
@@ -270,7 +270,7 @@ export const FarmerDashboard: React.FC = () => {
 
   const handleAcceptRequest = async (orderId: string) => {
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/orders/accept-request', {
+      const res = await fetch('/api/v1/marketplace/orders/accept-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -296,9 +296,9 @@ export const FarmerDashboard: React.FC = () => {
   const loadDashboardData = async () => {
     try {
       const userId = user?.id || 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11';
-      const listRes = await fetch('http://localhost:5000/api/v1/marketplace/listings');
-      const orderRes = await fetch(`http://localhost:5000/api/v1/marketplace/orders?userId=${userId}&role=farmer`);
-      const walletRes = await fetch(`http://localhost:5000/api/v1/marketplace/wallets?userId=${userId}`);
+      const listRes = await fetch('/api/v1/marketplace/listings');
+      const orderRes = await fetch(`/api/v1/marketplace/orders?userId=${userId}&role=farmer`);
+      const walletRes = await fetch(`/api/v1/marketplace/wallets?userId=${userId}`);
       
       if (listRes.ok) setListings(await listRes.json());
       if (orderRes.ok) setOrders(await orderRes.json());
@@ -319,7 +319,7 @@ export const FarmerDashboard: React.FC = () => {
   const loadChatData = async () => {
     try {
       const userId = user?.id || 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11';
-      const res = await fetch(`http://localhost:5000/api/v1/marketplace/chats/rooms?userId=${userId}`);
+      const res = await fetch(`/api/v1/marketplace/chats/rooms?userId=${userId}`);
       if (res.ok) {
         const data = await res.json();
         setChatRooms(data);
@@ -334,7 +334,7 @@ export const FarmerDashboard: React.FC = () => {
 
   const loadChatMessages = async (roomId: string) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/marketplace/chats/rooms/${roomId}/messages`);
+      const res = await fetch(`/api/v1/marketplace/chats/rooms/${roomId}/messages`);
       if (res.ok) setChatMessages(await res.json());
     } catch (err) {
       console.error(err);
@@ -347,7 +347,7 @@ export const FarmerDashboard: React.FC = () => {
 
     try {
       const userId = user?.id || 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11';
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/chats/send', {
+      const res = await fetch('/api/v1/marketplace/chats/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -434,7 +434,7 @@ export const FarmerDashboard: React.FC = () => {
     };
 
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/listings/create', {
+      const res = await fetch('/api/v1/marketplace/listings/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -459,7 +459,7 @@ export const FarmerDashboard: React.FC = () => {
 
   const handleAcceptOrder = async (orderId: string) => {
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/orders/accept', {
+      const res = await fetch('/api/v1/marketplace/orders/accept', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ orderId })
@@ -472,7 +472,7 @@ export const FarmerDashboard: React.FC = () => {
 
   const handleShipOrder = async (orderId: string) => {
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/orders/ship', {
+      const res = await fetch('/api/v1/marketplace/orders/ship', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ orderId, hubId: 'h1' }) // Coimbatore Hub

@@ -24,7 +24,7 @@ export const AgranexChat: React.FC = () => {
 
   const loadChatRooms = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/marketplace/chats/rooms?userId=${currentUserId}`);
+      const res = await fetch(`/api/v1/marketplace/chats/rooms?userId=${currentUserId}`);
       if (res.ok) {
         const data = await res.json();
         setRooms(data);
@@ -43,7 +43,7 @@ export const AgranexChat: React.FC = () => {
 
   const loadMessages = async (roomId: string) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/marketplace/chats/rooms/${roomId}/messages`);
+      const res = await fetch(`/api/v1/marketplace/chats/rooms/${roomId}/messages`);
       if (res.ok) setMessages(await res.json());
     } catch (err) {
       setMessages([
@@ -86,7 +86,7 @@ export const AgranexChat: React.FC = () => {
     };
 
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/chats/send', {
+      const res = await fetch('/api/v1/marketplace/chats/send', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)

@@ -49,7 +49,7 @@ const LiveGPSTrackingPanel: React.FC<{ orderId: string }> = ({ orderId }) => {
 
   const fetchTracking = async () => {
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/marketplace/logistics/tracking/order/${orderId}`);
+      const res = await fetch(`/api/v1/marketplace/logistics/tracking/order/${orderId}`);
       if (res.ok) {
         setTrackingData(await res.json());
       }
@@ -227,7 +227,7 @@ export const Marketplace: React.FC = () => {
     if (currentRole !== 'buyer') return;
     const userId = user?.id || 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380b22';
     try {
-      const res = await fetch(`http://localhost:5000/api/v1/marketplace/orders?userId=${userId}&role=buyer`);
+      const res = await fetch(`/api/v1/marketplace/orders?userId=${userId}&role=buyer`);
       if (res.ok) {
         setBuyerOrders(await res.json());
       }
@@ -248,7 +248,7 @@ export const Marketplace: React.FC = () => {
     setRequestSubmitting(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/orders/create-request', {
+      const res = await fetch('/api/v1/marketplace/orders/create-request', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -280,7 +280,7 @@ export const Marketplace: React.FC = () => {
 
   const loadListings = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/listings');
+      const res = await fetch('/api/v1/marketplace/listings');
       if (res.ok) {
         setListings(await res.json());
       }
@@ -509,7 +509,7 @@ export const Marketplace: React.FC = () => {
     };
 
     try {
-      const res = await fetch('http://localhost:5000/api/v1/marketplace/orders/create', {
+      const res = await fetch('/api/v1/marketplace/orders/create', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -522,7 +522,7 @@ export const Marketplace: React.FC = () => {
         setMainTab('orders'); // Auto switch tab to show tracking!
         // Immediately fetch to show the new order
         const userId = user?.id || 'a0eebc99-9c0b-4ef8-bb6d-6bb9bd380b22';
-        const refreshRes = await fetch(`http://localhost:5000/api/v1/marketplace/orders?userId=${userId}&role=buyer`);
+        const refreshRes = await fetch(`/api/v1/marketplace/orders?userId=${userId}&role=buyer`);
         if (refreshRes.ok) {
           setBuyerOrders(await refreshRes.json());
         }

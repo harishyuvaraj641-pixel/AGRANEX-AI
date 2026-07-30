@@ -65,7 +65,7 @@ export const TopBar: React.FC = () => {
 
   const handleMarkAllRead = async () => {
     try {
-      await fetch('http://localhost:5000/api/v1/notifications/mark-read', { method: 'POST' });
+      await fetch('/api/v1/notifications/mark-read', { method: 'POST' });
     } catch (e) {}
     markAllRead();
   };
